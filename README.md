@@ -22,7 +22,7 @@
 * ### Model : Modeling을 통해 만들어짐. 추상적인 개념. DataBase에 테이블 형태로 만들기 위한 설계  
 * ### DataBase : 실제 데이터를 저장하는 곳 (SQL 씀. ORM을 통해 파이썬과 데이터베이스 사이에서 통역사 역할)  
 * ### column, field, attribute : 특정 모델의 속성들 (데이터 타입 지정 필요)  
-(migration을 통해 database에 table 생성)  
+  (migration을 통해 database에 table 생성)  
 * ### CreatedAt(생성시간), UpdatedAt(수정시간) : 객체가 언제 생성되고 수정되었는지 중요  
 * ### Relation : Model 상호간의 관계  
 

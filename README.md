@@ -14,7 +14,7 @@
 ## 3. 3단 구조
 ### 모델(Model), 템플릿(Template), 뷰(View)  
 ### => MTV 패턴  
-![mtv](https://user-images.githubusercontent.com/31130917/105035589-95d48e80-5a9e-11eb-913e-e1412a18c573.PNG)  
+![mtv](https://user-images.githubusercontent.com/31130917/105038036-2b255200-5aa2-11eb-89c0-3e31a71e2a85.PNG) 
 * ### View : 요청에 대한 응답을 하는 곳  
   ex) url 접속 -> 11번가 서버로 request -> 11번가 홈페이지 보임 -> 11번가 서버의 response  
 * ### Template : View에서 response로 쓰이는 HTML 등등 (render를 통해 template을 responce로 client에게 보여줌)  

@@ -34,8 +34,8 @@ class Post(models.Model):
     content = models.TextField()  
     view_count = models.IntegerField(default=0)  
   
-    created_at = models.DataTimeField(auto_now_add=True)  
-    updated_at = models.DataTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)  
+    updated_at = models.DateTimeField(auto_now=True)
 </code></pre>  
   
 make migrations(주문서 만듬) -> migrate(주문서 적용)  

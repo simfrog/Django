@@ -45,3 +45,23 @@ class PostAdmin(admin.ModelAdmin):
     )
 </code></pre>  
 위와 같이 입력하면 아래와 같은 결과가 만들어짐  
+![커스텀리스트](https://user-images.githubusercontent.com/31130917/105373190-c278d980-5c49-11eb-92b0-a717e7cb3202.PNG)  
+  
+<pre><code>
+from django.contrib import admin  
+from .models import Post  
+  
+@admin.register(Post)  
+class PostAdmin(admin.ModelAdmin):  
+    list_display = (  
+        'id',  
+        'title',  
+        'view_count',  
+        'created_at',  
+        'updated_at'  
+    )  
+    search_fields = (  
+        'title',  
+    )
+</code></pre>  
+위 명령어를 추가하면 아래와 같이 검색창이 만들어짐  

@@ -30,6 +30,7 @@ admin.site.resgister(Post)
 실행 후 새로고침을 하면 창에 Post가 나타남  
 
 ## 3. 커스터마이징  
+### * list_display  
 <pre><code>
 from django.contrib import admin  
 from .models import Post  
@@ -44,9 +45,9 @@ class PostAdmin(admin.ModelAdmin):
         'updated_at'  
     ) // 튜플로 구성
 </code></pre>  
-위와 같이 입력하면 아래와 같은 결과가 만들어짐  
 ![커스텀리스트](https://user-images.githubusercontent.com/31130917/105373190-c278d980-5c49-11eb-92b0-a717e7cb3202.PNG)  
   
+### * search_fields : 검색 UI  
 <pre><code>
 from django.contrib import admin  
 from .models import Post  
@@ -64,9 +65,32 @@ class PostAdmin(admin.ModelAdmin):
         'title',  
     )
 </code></pre>  
-위 명령어를 추가하면 아래와 같이 검색창이 만들어짐  
 ![커스텀검색창](https://user-images.githubusercontent.com/31130917/105373457-0e2b8300-5c4a-11eb-9006-17ed24174225.PNG)  
   
+### * list_filter : 원하는 값들만 필터링해서 볼 수 있음  
+<pre><code>
+from django.contrib import admin  
+from .models import Post  
+  
+@admin.register(Post)  
+class PostAdmin(admin.ModelAdmin):  
+    list_display = (  
+        'id',  
+        'title',  
+        'view_count',  
+        'created_at',  
+        'updated_at'  
+    )  
+    search_fields = (  
+        'title',  
+    )  
+    list_filter = (  
+        'view_count',  
+    )  
+</code></pre>  
+![커스텀필터](https://user-images.githubusercontent.com/31130917/105374491-1d5f0080-5c4b-11eb-8225-c003eecca418.PNG)  
+  
+### * list_display_links : admin 사이트에서 세부항목으로 들어가는 link를 어디에 걸어줄지 선택  
 <pre><code>
 from django.contrib import admin  
 from .models import Post  

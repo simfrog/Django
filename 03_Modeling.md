@@ -65,7 +65,7 @@ ORM을 사용하여 실제로 테이블이 생성되었는지 확인해보고자
   
   
 from posts.models import Post // 먼저 import를 함  
-Posts.objects.create(title="간장게장 담그는 법", content="알이 꽉찬 꽃게를 간장에 담근다") // ORM을 통해 SQL과 소통  
+Post.objects.create(title="간장게장 담그는 법", content="알이 꽉찬 꽃게를 간장에 담근다") // ORM을 통해 SQL과 소통  
 => <Post: Post object (1)> // 1이란 id값을 갖는 게시글의 객체  
 Post.objects.all() // 모든 Post에 있는 게시글의 객체를 불러옴  
 post = Post.objects.get(id=1) // post라는 변수에 id가 1인 객체를 넣음  

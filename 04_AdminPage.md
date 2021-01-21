@@ -30,3 +30,18 @@ admin.site.resgister(Post)
 실행 후 새로고침을 하면 창에 Post가 나타남  
 
 ## 3. 커스터마이징  
+<pre><code>
+from django.contrib import admin  
+from .models import Post  
+  
+@admin.register(Post)  
+class PostAdmin(admin.ModelAdmin):  
+    list_display = (  
+        'id',  
+        'title',  
+        'view_count',  
+        'created_at',  
+        'updated_at'  
+    )
+</code></pre>  
+위와 같이 입력하면 아래와 같은 결과가 만들어짐  

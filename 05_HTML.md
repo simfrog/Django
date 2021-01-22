@@ -58,9 +58,5 @@ urlpatterns = [
 </code></pre>  
   
 main.html은 아래와 같이 작성후 실행을 하면 다음과 같이 나옴  
-<pre><code>  
-<h1>  
-    Hello Django!  
-</h1>
-</code></pre>
-![html](https://user-images.githubusercontent.com/31130917/105482560-e42a9d00-5ceb-11eb-8c20-9d42f7332fbb.PNG)  
+![html파일](https://user-images.githubusercontent.com/31130917/105482677-0de3c400-5cec-11eb-8cca-0a1431c7dd6c.PNG)  
+![html](https://user-images.githubusercontent.com/31130917/105482560-e42a9d00-5ceb-11eb-8c20-9d42f7332fbb.PNG)

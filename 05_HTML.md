@@ -11,3 +11,37 @@
 3. 해당 view에서 요청을 처리하여 응답  
 
 ## 2. 예시  
+urls.py에서 경로 만듬  
+<pre><code>
+from django.contrib import admin  
+from django.urls import path  
+
+urlpatterns = [  
+    path('admin/', admin.site.urls),  
+    path('', 어디로가야하죠?)  
+]
+</code></pre>  
+  
+posts 앱(폴더) > views.py에 들어가서 함수를 작성  
+views.py에서 코드를 짜는법 -> 함수로 View 짜기 or 클래스로 View 짜기  
+<pre><code>
+from django.shortcuts import render  
+  
+def main(request):  
+    return render(request, 어떤 html을 띄어줄건지)
+</code></pre>  
+  
+posts 앱(폴더) > templates (폴더) > posts (폴더) > main.html 을 만듬  
+이때 views.py의 함수 이름과 html 파일 이름을 같게 함  
+render에서 html 등 파일을 가져올때 templates 이름의 폴더에서 가져옴  
+만약 다른 앱(폴더)에 똑같은 이름의 다른 html이 있다면 다른 html을 가져올 수 있음  
+-> templates폴더 안에 posts 앱(폴더)와 이름이 같은 폴더를 만들어줌  
+<pre><code>
+from django.shortcuts import render  
+  
+def main(request):  
+    return render(request, 'posts/main.html')
+</code></pre>  
+  
+urls.py 에 main함수 넣어줌    
+posts 앱(폴더) > views.py 에서 main함수 import 가져옴  

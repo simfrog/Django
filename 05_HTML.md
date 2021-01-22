@@ -9,3 +9,5 @@
   urls.py 의 urlpatterns에 해당 url 저장  
   urls.py -> Django에서 경로를 생성하고 어디로 갈지 알려주는 네비역할  
 3. 해당 view에서 요청을 처리하여 응답  
+
+## 2. 예시  

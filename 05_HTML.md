@@ -43,5 +43,23 @@ def main(request):
     return render(request, 'posts/main.html')
 </code></pre>  
   
-urls.py 에 main함수 넣어줌    
+urls.py에 main함수 넣어줌    
 posts 앱(폴더) > views.py 에서 main함수 import 가져옴  
+urls.py에 아래와 같이 작성  
+<pre><code>
+from django.contrib import admin  
+from django.urls import path  
+from posts.views import main  
+  
+urlpatterns = [  
+    path('admin/', admin.site.urls),  
+    path('',main),  
+]
+</code></pre>  
+  
+main.html은 아래와 같이 작성후 실행을 하면 다음과 같이 나옴  
+<pre><code>
+<h1>  
+    Hello Django!  
+</h1>
+</code></pre>

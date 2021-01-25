@@ -31,7 +31,7 @@ def main(request):
     return render(request, 어떤 html을 띄어줄건지)
 </code></pre>  
   
-posts 앱(폴더) > templates (폴더) > posts (폴더) > main.html 을 만듬  
+### posts 앱(폴더) > templates (폴더) > posts (폴더) > main.html 을 만듬  
 이때 views.py의 함수 이름과 html 파일 이름을 같게 함  
 render에서 html 등 파일을 가져올때 templates 이름의 폴더에서 가져옴  
 만약 다른 앱(폴더)에 똑같은 이름의 다른 html이 있다면 다른 html을 가져올 수 있음  

@@ -5,7 +5,7 @@
 bootstrap 사이트에 들어가서 'Navbar'를 검색  
 아래의 코드를 복사하여 base.html에서 body 밑에 바로 붙여넣기  
 ![메뉴바](https://user-images.githubusercontent.com/31130917/106601001-7a897900-659e-11eb-97c0-38a020df1b8c.PNG)  
-<출처 : https://edu.goorm.io/learn/lecture/16377/%EC%B4%88%EB%B3%B4%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%9E%A5%EA%B3%A0-django-%EB%BF%8C%EC%8B%9C%EA%B8%B0/lesson/853997/8%EA%B0%95-include%EB%A1%9C-html-%EC%86%8C%EC%8A%A4-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0>  
+<출처 : groomedu 초보자를 위한 장고 뿌시기 8강 참고>  
 실행을 하면 아래와 같은 결과 창이 뜸  
 ![navbar결과](https://user-images.githubusercontent.com/31130917/106144317-5f41f680-61b7-11eb-96f4-a41c7202bdcb.PNG)  
 이는 다른 링크 페이지에서도 똑같이 확인할 수 있음(base.html에 코드를 작성하였기 때문)  

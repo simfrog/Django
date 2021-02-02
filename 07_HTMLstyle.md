@@ -9,7 +9,7 @@ TEMPLATES의 DIRS에 코드 추가
 BlackBoard 폴더 안에 'templates'라는 경로를 읽어올 수 있음  
   
 2. BlackBoard 폴더 > templates 폴더 > base.html 만듬  
-'bootstrap'사이트에 들어가 base.html에 넣을 뼈대 html 코드 카피  
+'bootstrap'사이트에 들어가 base.html에 넣을 뼈대 html 코드 카피(Starter template)  
 head의 title 부분은 'My First Django'로 바꾸고 body의 'hello world!'는 지움  
 지운 부분에 아래와 같은 코드 추가  
 <pre><code>

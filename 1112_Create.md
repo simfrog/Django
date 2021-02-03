@@ -72,4 +72,98 @@ block content 위에 붙여넣기
 아래와 같이 코드를 작성  
 ![html수정2](https://user-images.githubusercontent.com/31130917/106692972-dee91e80-6618-11eb-8aef-21f145b22157.PNG)  
 실행을 하고 글 작성 버튼을 클릭하면 위 url이 아래와 같이 변경된 것을 확인할 수 있음  
-        도메인/경로/경로/?title=새로운&content=글입니다
+<pre><code>
+도메인/경로/경로/?title=새로운&content=글입니다
+</code></pre>  
+#### 입력한 값과 해당 값의 이름이 주소에 보임 => Get 방식  
+#### Get 방식을 사용할 경우 데이터 노출 위험 발생 따라서 Post 방식 사용  
+  
+데이터를 new가 아닌 'create'라는 곳을 새로 만들어 그곳에 보냄  
+new.html을 아래와 같이 수정  
+![html수정3](https://user-images.githubusercontent.com/31130917/106693740-6daa6b00-661a-11eb-8579-242c238745b1.PNG)  
+  
+posts 앱(폴더) > urls.py에도 추가 작성  
+<pre><code>
+from django.urls import path  
+from .views import new, create  
+  
+app_name = "posts"  
+urlpatterns = [  
+    path('new/', new, name="new"),  
+    path('create/', create, name="create"), // 추가 작성 부분  
+]
+</code></pre>  
+  
+posts 앱(폴더) > views.py에도 추가 작성  
+<pre><code>
+from django.shortcuts import render  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+  
+  
+def new(request):  
+    return render(request, 'posts/new.html')  
+  
+// 추가 작성 부분  
+def create(request):  
+    pass
+</code></pre>  
+이렇게 하면 데이터를 create로 보내줄 수 있음  
+이제 데이터를 저장하는 방법에 대해 작성  
+posts 앱(폴더) > views.py에서 다음과 같이 코드 수정  
+<pre><code>
+from django.shortcuts import render  
+from .models import Post // ORM을 가져와서 Post객체 생성
+  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+  
+  
+def new(request):  
+    return render(request, 'posts/new.html')  
+  
+  
+def create(request):  
+    if request.method == "POST": // 만약 request의 방식이 POST이면(POST방식만 처리하고자)  
+        title = request.POST.get('title') // 지정해준 변수 = request.POST.get(POST방식으로 오는 데이터 이름)  
+        content = request.POST.get('content')  
+        Post(title=title, content=content).save() // Post 테이블에 다음과 같이 저장  
+        //Post(Post 테이블의 column = 실제로 넘겨준 값, )
+</code></pre>  
+실행을 하고 글 작성을 하면 403 CSRF(Cross Site Request Forgery : 외부로부터 데이터를 보호해주는 장고의 토큰, 긴 문자열을 form에 데이터와 같이 넣어서 그 값이 고유하다는 것을 보여줘야 데이터를 정상적으로 처리해주는 보안 방식) 에러가 발생  
+#### => new.html에 아래의 코드 추가 작성  
+<pre><code>
+form action=....
+{% csrf_token %} // 추가 작성 부분  
+div class=...
+</code></pre>  
+실행을 하고 글 작성을 하면 admin 페이지에서 생성이 된 것은 확인 할 수 있으나 에러창이 뜬 것을 확인 할 수 있음(어떤 Http 응답을 주지 않는다는 에러, 즉 예시로 네이버에서 로그인을 하면 다음 실행이 표시되어야 하는데 그대로인 경우)  
+  
+posts 앱(폴더) > views.py에서 다음과 같이 코드 추가및수정  
+<pre><code>
+from django.shortcuts import render, redirect  
+from .models import Post  
+  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+  
+  
+def new(request):  
+    return render(request, 'posts/new.html')  
+  
+  
+def create(request):  
+    if request.method == "POST":  
+        title = request.POST.get('title')  
+        content = request.POST.get('content')  
+        Post(title=title, content=content).save()  
+        return redirect('main') // main 페이지로 돌아간다는 뜻
+</code></pre>  
+실행을 하고 글 작성을 하면 메인 페이지로 돌아가고 admin 페이지에도 새로운 글이 생성된 것을 확인 할 수 있음  
+Post 객체를 생성하는 다른 방법은 아래와 같이 수정해도 가능  
+<pre><code>
+Post(title=title, content=content).save() -> Post.objects.create(title=title, content=content) 으로 수정
+</

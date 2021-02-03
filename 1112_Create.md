@@ -58,8 +58,4 @@ block content 위에 붙여넣기
 ![메뉴바수정결과](https://user-images.githubusercontent.com/31130917/106691243-887ae080-6616-11eb-93ee-44dd55ecb017.PNG)  
   
 6. posts/new 페이지에서 너비를 맞추고자 new.html에서 아래의 코드를 추가 작성  
-<pre><code>
-<div class="container">  
-// bootstrap에서 복사한 코드를 붙여넣음  
-</div>
-</code></pre>  
+'<div class="container"></div>' 사이에 bootstrap에서 가져온 코드를 붙여넣음  

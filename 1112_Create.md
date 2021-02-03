@@ -166,7 +166,7 @@ def create(request):
 Post 객체를 생성하는 다른 방법은 아래와 같이 수정해도 가능  
 <pre><code>
 Post(title=title, content=content).save() -> Post.objects.create(title=title, content=content) 으로 수정
-</
+</code></pre>
   
 # 12강. Create 생성하기  
 

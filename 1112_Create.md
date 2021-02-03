@@ -72,4 +72,4 @@ block content 위에 붙여넣기
 아래와 같이 코드를 작성  
 ![html수정2](https://user-images.githubusercontent.com/31130917/106692972-dee91e80-6618-11eb-8aef-21f145b22157.PNG)  
 실행을 하고 글 작성 버튼을 클릭하면 위 url이 아래와 같이 변경된 것을 확인할 수 있음  
-    도메인/경로/경로/?title=새로운&content=글입니다
+        도메인/경로/경로/?title=새로운&content=글입니다

@@ -54,8 +54,16 @@ block content 위에 붙여넣기
   
 5. 프로젝트 폴더 > templates 폴더 > share 폴더 > _navbar.html에 다음과 같이 코드 수정  
 ![메뉴바수정](https://user-images.githubusercontent.com/31130917/106691178-66815e00-6616-11eb-887d-d81b5fc2171e.PNG)  
-아래와 같은 결과를 확인 할 수 있음  
+실행하면 아래와 같은 결과를 확인 할 수 있음  
 ![메뉴바수정결과](https://user-images.githubusercontent.com/31130917/106691243-887ae080-6616-11eb-93ee-44dd55ecb017.PNG)  
   
-6. posts/new 페이지에서 너비를 맞추고자 new.html에서 아래의 코드를 추가 작성  
-'<div class="container"></div>' 사이에 bootstrap에서 가져온 코드를 붙여넣음  
+6. posts/new 페이지에서 너비를 맞추고 게시글 작성란에 맡에 new.html에서 다음과 같이 코드 수정  
+![html수정](https://user-images.githubusercontent.com/31130917/106691641-34243080-6617-11eb-8352-47a4659e2e3e.PNG)  
+#### (mb-3안에 form-control 기억하기)  
+실행하고 메뉴바에 '세글 쓰기'를 클릭하면 아래와 같은 결과를 확인 할 수 있음  
+![게시글 결과](https://user-images.githubusercontent.com/31130917/106691781-751c4500-6617-11eb-80f4-402856b8263e.PNG)  
+  
+* ### Get 방식 : url로 접속을 해서 바로 그 페이지가 보이는 경우 대부분 Get 방식  
+* ### Post 방식 : 어떤 처리를 해주는 방식  
+  ### ex) 로그인 버튼을 누르면 바로 어떤 페이지로 떨어지는 것이 아닌 로그인 처리가 된 후 메인 페이지로 떨어짐  
+  

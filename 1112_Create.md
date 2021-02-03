@@ -167,3 +167,149 @@ Post 객체를 생성하는 다른 방법은 아래와 같이 수정해도 가�
 <pre><code>
 Post(title=title, content=content).save() -> Post.objects.create(title=title, content=content) 으로 수정
 </
+  
+# 12강. Create 생성하기  
+
+## 1. 예시(ORM을 사용해서 실제 데이터베이스에 저장된 것을 pdb로 확인하기)  
+* ### Pdb : Python Debug module  
+posts 앱(폴더) > views.py에 아래와 같이 코드 추가  
+<pre><code>
+from django.shortcuts import render, redirect  
+from .models import Post  
+import pdb // 추가 작성 부분  
+  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+  
+  
+def new(request):  
+    return render(request, 'posts/new.html')  
+  
+  
+def create(request):  
+    if request.method == "POST":  
+        pdb.set_trace() // 의심이 가는 곳에 해당 코드 작성  
+        title = request.POST.get('title')  
+        content = request.POST.get('content')  
+        Post.objects.create(title=title, content=content)  
+        return redirect('main')
+</code></pre>  
+실행을 하고 글 작성을 하려하면 로딩창이 뜸 => POST request를 받았으므로 set_trace()에 걸린 것  
+터미널 창을 보면 아래와 같이 뜨고 작성할 수 있음  
+![pdb](https://user-images.githubusercontent.com/31130917/106714034-9d6b6a00-663e-11eb-8678-4b5d2fdf1947.PNG)  
+#### request.POST -> 데이터를 dictionary로 나타냄  
+* #### request.POST['title'] : dict를 출력하는 방법 중 하나, dict에 없는 항목을 입력하였을 시 에러 발생  
+* #### request.POST.get('title') : dict를 출력하는 방법 중 하나, dict에 없는 항목을 입력하였을 시 none 출력  
+#### => 버그 발생을 막고자 '.get('')방식으로 dict 출력  
+  
+## 2. 예시(코드를 간단하게 하기위한 방법)  
+Django에서는 form을 쉽게하기 위해 다양한 지원  
+1. Posts 앱(폴더) > forms.py 만듬  
+아래와 같이 코드 작성  
+<pre><code>
+from django import forms  
+from .models import Post  
+  
+class PostForm(forms.ModelForm):  
+    class Meta:  
+        model = Post  
+        fields = ['title', 'content']  
+        labels = {  
+            'title': '제목',  
+            'content': '내용'  
+        }
+</code></pre>  
+  
+2. Posts 앱(폴더) > view.py에 다음과 같이 코드 추가 작성  
+<pre><code>
+from django.shortcuts import render, redirect  
+from .models import Post  
+from .forms import PostForm // 추가 작성 부분  
+import pdb  
+  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+
+
+def new(request):  
+    context = {  
+        'form': PostForm()  
+    }  
+    return render(request, 'posts/new.html', context) // 세번째 파라미터를 제시하여 줌으로써 new.py에서 쓸 수 있음  
+  
+  
+def create(request):  
+    if request.method == "POST":  
+        title = request.POST.get('title')  
+        content = request.POST.get('content')  
+        Post.objects.create(title=title, content=content)  
+        return redirect('main')
+</code></pre>  
+  
+3. Posts 앱(폴더) > templates 폴더 > posts 폴더 > news.py에 다음과 같이 코드 수정  
+* #### {% %} : 템플릿 태그, 뭔가를 가져오거나 임무를 수행  
+* #### {{ }} : 템플릿 변수, 값을 보여줌  
+![new수정](https://user-images.githubusercontent.com/31130917/106716456-ce996980-6641-11eb-99cd-2e6f0c5a1798.PNG)  
+실행하고 '새글 쓰기'에 들어가면 아래와 같은 결과를 확인 할 수 있음  
+![new수정결과](https://user-images.githubusercontent.com/31130917/106716602-fab4ea80-6641-11eb-9c10-bce16ea196cd.PNG)  
+  
+아래와 같이 코드 수정을 하면 줄바꿈이 된 것을 확인 할 수 있음  
+<pre><code>
+{{ form }} -> {{ form.as_p }}
+</code></pre>  
+![new수정결과2](https://user-images.githubusercontent.com/31130917/106733644-7bc9ad00-6655-11eb-888f-03c8f9f5ad77.PNG)  
+  
+Posts 앱(폴더) > form.py에서 아래와 같이 코드 추가  
+<pre><code>
+from django import forms  
+from .models import Post  
+  
+class PostForm(forms.ModelForm):  
+    class Meta:  
+        model = Post  
+        fields = ['title', 'content']  
+        labels = {  
+            'title': '제목',  
+            'content': '내용'  
+        }  
+        widgets = { // 추가 작성 부분  
+            'title': forms.TextInput(attrs={  
+                'class': 'form-control'  
+            }),  
+            'content': forms.Textarea(attrs={  
+                'class': 'form-control'  
+            }),  
+        }
+</code></pre>  
+다음과 같은 결과를 확인 할 수 있음  
+![new수정결과3](https://user-images.githubusercontent.com/31130917/106734953-fcd57400-6656-11eb-9dab-13d30a777e64.PNG)  
+  
+'form'으로 형식을 합쳤기 때문에 다음 코드도 수정할 수 있음(news.py)  
+<pre><code>  
+from django.shortcuts import render, redirect  
+from .models import Post  
+from .forms import PostForm  
+import pdb  
+  
+  
+def main(request):  
+    return render(request, 'posts/main.html')  
+  
+  
+def new(request):  
+    context = {  
+        'form': PostForm()  
+    }  
+    return render(request, 'posts/new.html', context)  
+  
+  
+def create(request):  
+    if request.method == "POST":  
+        form = PostForm(request.POST) // 수정 부분  
+        if form.is_valid(): // 수정 부분  
+            form.save() // 수정 부분  
+        return redirect('main')
+</code></pre>  
+같은 결과를 확인 할 수 있음(생략)

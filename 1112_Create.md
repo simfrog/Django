@@ -57,7 +57,7 @@ block content 위에 붙여넣기
 실행하면 아래와 같은 결과를 확인 할 수 있음  
 ![메뉴바수정결과](https://user-images.githubusercontent.com/31130917/106691243-887ae080-6616-11eb-93ee-44dd55ecb017.PNG)  
   
-6. posts/new 페이지에서 너비를 맞추고 게시글 작성란에 맡에 new.html에서 다음과 같이 코드 수정  
+6. posts/new 페이지에서 너비를 맞추고 게시글 작성란에 밑에 new.html에서 다음과 같이 코드 수정  
 ![html수정](https://user-images.githubusercontent.com/31130917/106691641-34243080-6617-11eb-8352-47a4659e2e3e.PNG)  
 #### (mb-3안에 form-control 기억하기)  
 실행하고 메뉴바에 '세글 쓰기'를 클릭하면 아래와 같은 결과를 확인 할 수 있음  
